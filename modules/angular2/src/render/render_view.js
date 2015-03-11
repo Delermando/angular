@@ -31,8 +31,4 @@ export class RenderView {
     // TODO: Use the DomFacade
     this.textNodes[boundTextNodeIndex].text = value;
   }
-
-  returnToPool() {
-    // TODO: implement this (call ViewFactory.returnView)
-  }
 }

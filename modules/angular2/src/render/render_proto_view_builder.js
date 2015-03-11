@@ -14,8 +14,8 @@ export class RenderProtoViewBuilder {
     this.instantiateInPlace = true;
   }
 
-  bindElement():RenderElementBinder {
-    var elBinder = new RenderElementBinder();
+  bindElement(nestedProtoView):RenderElementBinder {
+    var elBinder = new RenderElementBinder(nestedProtoView);
     ListWrapper.push(this.elementBinders, elBinder);
     return elBinder;
   }

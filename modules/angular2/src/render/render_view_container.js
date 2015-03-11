@@ -51,15 +51,12 @@ export class RenderViewContainer {
   remove(atIndex=-1) {
     if (atIndex == -1) atIndex = this.views.length - 1;
     // TODO: This needs to be delayed after any pending animations
-    // TODO(tbosch): Need to notify the application view when all animations
-    // for the render view are done.
     var view = this.detach(atIndex);
     ListWrapper.forEach(view.componentViews, (componentView) => {
       // don't remove the component view itself as once attached it will never change
       removeViewContainers(componentView.viewContainers);
     });
     removeViewContainers(view.viewContainers);
-    view.returnToPool();
   }
 
   /**

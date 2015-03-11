@@ -1,26 +1,31 @@
 export class Renderer {
-  createView(protoViewId, viewId):ViewRenderer {}
+  change():ChangeBuilder {}
+}
 
+class ChangeBuilder {
+  createView(protoViewId, viewId):ViewRenderer {}
   updateView(viewId):ViewRenderer {}
-  commit() {}
+  destroyView(viewId) {}
+
+  // Note: this promise is important, as
+  // the ViewPool can't mark a view as reusable until
+  // all animations are done on that view!
+  execute():Promise {}
 }
 
 class ViewRender {
   updateBoundElement(boundElementIndex):ElementRenderer {}
   updateText(boundTextNodeIndex, value:string) {}
   updateViewContainer(viewContainerIndex):ViewContainerRenderer {}
-  commit() {}
 }
 
 class ElementRenderer {
   setProperty(propertyName, value) {}
   setComponentView(viewId):ViewRenderer {}
-  commit() {}
 }
 
 class ViewContainerRenderer {
   addView(viewId) {}
   // TODO add, remove, move, ...
   // RenderViewContainer.remove: needs to be recursive...
-  commit() {}
 }

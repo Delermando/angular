@@ -1,31 +1,5 @@
-// TODO(tbosch): make this configurable/smarter.
-var VIEW_POOL_CAPACITY = 1;
-var VIEW_POOL_PREFILL = 0;
-
 export class RenderViewFactory {
-  _viewPool: RenderViewPool;
-
-  constructor() {
-    this._viewPool = new RenderViewPool(VIEW_POOL_CAPACITY);
-  }
-
-  getView(protoView:RenderProtoView):View {
-    if (this._viewPool.length() == 0) this._preFillPool();
-    var view = this._viewPool.pop();
-    return isPresent(view) ? view : this._instantiate(protoView);
-  }
-
-  returnView(view: RenderView) {
-    this._viewPool.push(view);
-  }
-
-  _preFillPool(protoView:RenderProtoView) {
-    for (var i = 0; i < VIEW_POOL_PREFILL; i++) {
-      this._viewPool.push(this._instantiate(protoView));
-    }
-  }
-
-  _instantiate(protoView:RenderProtoView) {
+  createView(protoView:RenderProtoView):View {
     var rootElementClone = protoView.instantiateInPlace ? protoView.rootElement : DOM.importIntoDoc(protoView.rootElement);
     var elementsWithBindingsDynamic;
     if (protoView.isTemplateElement) {

@@ -19,3 +19,7 @@
   - ProtoView (data structure)
   - ViewFactory
 
+Open questions:
+- how would a RenderProtoView get created?
+  (exact calls between app worker and main thread)
+- event handling
