@@ -1,7 +1,7 @@
 import {ListWrapper, MapWrapper, StringMapWrapper, List} from 'angular2/src/facade/collection';
 import * as viewModule from './render_view';
 
-export class ViewPool {
+export class RenderViewPool {
   _views: List<viewModule.RenderView>;
   _capacity: number;
   constructor(capacity: number) {
